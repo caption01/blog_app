@@ -1,13 +1,7 @@
-type User {
-  id: ID! @id
-  name: String!
-  email: String!
-  posts: [Post!]!
-}
-
 type Post {
   id: ID! @id
   title: String!
-  body: String!
-  author: User!
+  descirption: String!
+  image: String!
+  link: String!
 }
