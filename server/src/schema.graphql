@@ -1,5 +1,13 @@
+# import PostOrderByInput from './generated/prisma.graphql'
+
 type Query {
-  posts: [Post!]!
+  posts(
+    query: String
+    orderBy: PostOrderByInput
+    skip: Int
+    first: Int
+    after: String
+  ): [Post!]!
 }
 
 type Mutation {

@@ -17,8 +17,6 @@ const Mutation = {
       id: postId,
     });
 
-    console.log(postExits);
-
     if (!postExits) {
       throw new Error("post not found");
     }
