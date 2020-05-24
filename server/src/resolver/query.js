@@ -1,9 +1,8 @@
 const Query = {
-  hello(parent, args, ctx, info) {
-    return "hello";
-  },
-  me(parent, args, ctx, info) {
-    return "my name is Nutchapon(bom bay)";
+  posts(parent, args, { prisma }, info) {
+    const opArgs = {};
+
+    return prisma.query.posts(opArgs, info);
   },
 };
 
