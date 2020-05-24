@@ -4,6 +4,8 @@ type Query {
 
 type Mutation {
   createPost(data: CreatePostInput!): Post!
+  updatePost(id: String!, data: UpdatePostInput!): Post!
+  deletePost(id: String!): Post!
 }
 
 input CreatePostInput {
@@ -11,6 +13,13 @@ input CreatePostInput {
   descirption: String!
   image: String!
   link: String!
+}
+
+input UpdatePostInput {
+  title: String
+  descirption: String
+  image: String
+  link: String
 }
 
 type Post {
