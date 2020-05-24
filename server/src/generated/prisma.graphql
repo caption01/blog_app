@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Sun May 24 2020 10:29:47 GMT+0700 (Indochina Time)
+# timestamp: Sun May 24 2020 18:02:06 GMT+0700 (Indochina Time)
 
 type AggregatePost {
   count: Int!
@@ -9,6 +9,8 @@ type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
 }
+
+scalar DateTime
 
 """Raw JSON value"""
 scalar Json
@@ -62,6 +64,8 @@ type Post implements Node {
   descirption: String!
   image: String!
   link: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -102,6 +106,10 @@ enum PostOrderByInput {
   image_DESC
   link_ASC
   link_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type PostPreviousValues {
@@ -110,6 +118,8 @@ type PostPreviousValues {
   descirption: String!
   image: String!
   link: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type PostSubscriptionPayload {
@@ -372,6 +382,50 @@ input PostWhereInput {
 
   """All values not ending with the given string."""
   link_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
 }
 
 input PostWhereUniqueInput {

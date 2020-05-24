@@ -4,4 +4,6 @@ type Post {
   descirption: String!
   image: String!
   link: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
