@@ -2,25 +2,22 @@ import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 
-const HELLO = gql`
+const FIRST_POST = gql`
   {
-    hello
+    posts {
+      title
+      descirption
+    }
   }
 `;
 
-const ME = gql`
-  {
-    me
-  }
-`;
-
-const getHelloWord = () => {
-  const { loading, error, data } = useQuery(HELLO);
+const getFirstPosts = () => {
+  const { loading, error, data } = useQuery(FIRST_POST);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>error...</p>;
 
-  return <h1>{data.hello}</h1>;
+  return <h1>{data.posts[0].title}</h1>;
 };
 
 const getMe = () => {
@@ -36,9 +33,7 @@ const RateContent = () => {
   return (
     <div>
       <h2>My first Apollo app 🚀</h2>
-      {/* {ExchangeRate()} */}
-      {getHelloWord()}
-      {getMe()}
+      {getFirstPosts()}
     </div>
   );
 };
