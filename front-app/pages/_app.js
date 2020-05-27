@@ -3,6 +3,7 @@ import App from "next/app";
 import { ApolloProvider } from "@apollo/react-hooks";
 
 import withApolloClient from "../utils/apollo";
+import "../style/app.less";
 
 class MyApp extends App {
   static async getInitialProps(appContexts) {
