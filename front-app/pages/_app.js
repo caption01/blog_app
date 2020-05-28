@@ -1,8 +1,12 @@
 import React from "react";
 import App from "next/app";
 import { ApolloProvider } from "@apollo/react-hooks";
+import { ThemeProvider } from "styled-components";
 
 import withApolloClient from "../utils/apollo";
+import PageLayout from "../component/layout/pageLayout";
+
+import theme from "../style/theme";
 import "../style/app.less";
 
 class MyApp extends App {
@@ -17,7 +21,11 @@ class MyApp extends App {
 
     return (
       <ApolloProvider client={apollo}>
-        <Component {...PageProps} />
+        <ThemeProvider theme={theme}>
+          <PageLayout>
+            <Component {...PageProps} />
+          </PageLayout>
+        </ThemeProvider>
       </ApolloProvider>
     );
   }
