@@ -6,6 +6,8 @@ import styled from "styled-components";
 const StyledSearchBar = styled(Row)`
   margin: 24px 24px;
   width: 80%;
+  display: flex;
+  align-items: center;
 `;
 
 const Item = styled(Col)``;

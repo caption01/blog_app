@@ -2,26 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import { Layout } from "antd";
 
-import TopNav from "../nav/topNav";
+import TopNav from "./topNav";
+import FooterBar from "./footer";
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 const StyledBody = styled(Content)`
-  min-height: 100vh;
+  height: 85vh;
   background-color: ${(props) => props.theme.colors.bg_second};
   color: ${(props) => props.theme.colors.text_second};
   padding: 0px 50px;
 `;
 
-const StyledFooter = styled(Footer)`
-  background-color: ${(props) => props.theme.colors.bg_second};
-  color: ${(props) => props.theme.colors.text_second};
-  text-align: center;
-`;
-
 const StyledContent = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  height: 100%;
 `;
 
 const PageLayout = ({ children }) => {
@@ -33,7 +30,7 @@ const PageLayout = ({ children }) => {
           {children}
         </StyledContent>
       </StyledBody>
-      <StyledFooter>Nutcha</StyledFooter>
+      <FooterBar />
     </Layout>
   );
 };

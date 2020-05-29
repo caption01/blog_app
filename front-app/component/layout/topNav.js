@@ -8,6 +8,9 @@ const StyledTopNav = styled(Header)`
   background-color: ${(props) => props.theme.colors.bg_primary};
   color: ${(props) => props.theme.colors.text_primary};
   text-align: center;
+  height: 10vh;
+  display: flex;
+  align-items: center;
 `;
 
 const TopNav = () => {
