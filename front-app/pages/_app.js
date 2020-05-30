@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import App from "next/app";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { ThemeProvider } from "styled-components";
@@ -9,26 +9,40 @@ import PageLayout from "../component/layout/pageLayout";
 import theme from "../style/theme";
 import "../style/app.less";
 
-class MyApp extends App {
-  static async getInitialProps(appContexts) {
-    const appProps = await App.getInitialProps(appContexts);
+const MyApp = (props) => {
+  const { Component, PageProps, apollo } = props;
+  const [isMobile, setIsMobile] = useState(false);
 
-    return { ...appProps };
-  }
+  const handleResize = () => {
+    const isMoblie = window.innerWidth <= 768;
+    setIsMobile(isMoblie);
+  };
 
-  render() {
-    const { Component, PageProps, apollo } = this.props;
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  }, []);
 
-    return (
-      <ApolloProvider client={apollo}>
-        <ThemeProvider theme={theme}>
-          <PageLayout>
-            <Component {...PageProps} />
-          </PageLayout>
-        </ThemeProvider>
-      </ApolloProvider>
-    );
-  }
-}
+  useEffect(() => {
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return (
+    <ApolloProvider client={apollo}>
+      <ThemeProvider theme={{ ...theme, isMobile }}>
+        <PageLayout>
+          <Component {...PageProps} />
+        </PageLayout>
+      </ThemeProvider>
+    </ApolloProvider>
+  );
+};
+
+App.getInitialProps = async (ctx) => {
+  const appProps = await { ...ctx };
+
+  return { ...appProps };
+};
 
 export default withApolloClient(MyApp);

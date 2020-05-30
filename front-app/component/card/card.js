@@ -11,11 +11,11 @@ const StyledCardItem = styled(Card)`
 
 const StyledDivider = styled(Divider)``;
 
-const CardItem = ({ link }) => {
+const CardItem = ({ post }) => {
   return (
     <div>
-      <StyledCardItem title="Card title" bordered={false} hoverable>
-        <ImageFrame image={link} />
+      <StyledCardItem title={post.title} bordered={false} hoverable>
+        <ImageFrame image={post.image} />
         <StyledDivider />
         <TabIcons />
       </StyledCardItem>

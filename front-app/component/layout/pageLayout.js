@@ -11,7 +11,7 @@ const StyledBody = styled(Content)`
   height: 85vh;
   background-color: ${(props) => props.theme.colors.bg_second};
   color: ${(props) => props.theme.colors.text_second};
-  padding: 0px 50px;
+  padding: ${(props) => (props.theme.isMobile ? "0" : "0px 50px")};
 `;
 
 const StyledContent = styled.div`
