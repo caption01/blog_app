@@ -1,23 +1,25 @@
 import React from "react";
 import styled from "styled-components";
-import { Card } from "antd";
+import { Card, Divider } from "antd";
 
+import ImageFrame from "./imageFrame";
 import TabIcons from "./iconTab";
 
 const StyledCardItem = styled(Card)`
   margin: 12px 12px 0px 12px;
 `;
 
-const CardItem = () => {
+const StyledDivider = styled(Divider)``;
+
+const CardItem = ({ link }) => {
   return (
-    <>
+    <div>
       <StyledCardItem title="Card title" bordered={false} hoverable>
-        <p>Card content</p>
-        <p>Card content</p>
-        <p>Card content</p>
+        <ImageFrame image={link} />
+        <StyledDivider />
         <TabIcons />
       </StyledCardItem>
-    </>
+    </div>
   );
 };
 

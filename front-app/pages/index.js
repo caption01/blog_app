@@ -12,16 +12,45 @@ const DisplayCardContent = styled(Row)`
   overflow-y: scroll;
 `;
 
-const cardItem = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+const cardItems = [
+  {
+    id: 1,
+    link: "https://www.imagemagick.org/Usage/canvas/gradient_bilinear.jpg",
+  },
+  {
+    id: 2,
+    link:
+      "https://1.bp.blogspot.com/-J672hhVil2c/VcRmz4BdOPI/AAAAAAAAMw4/w51C3ULbdRU/s200-c/blogger-re-size-crop-photo.jpg",
+  },
+  {
+    id: 3,
+    link:
+      "https://marketsquaregeelong.com.au/wp-content/uploads/2018/08/My-Size-400x400.jpg",
+  },
+  {
+    id: 4,
+    link: "https://www.imagemagick.org/Usage/canvas/gradient_bilinear.jpg",
+  },
+  {
+    id: 5,
+    link:
+      "https://1.bp.blogspot.com/-J672hhVil2c/VcRmz4BdOPI/AAAAAAAAMw4/w51C3ULbdRU/s200-c/blogger-re-size-crop-photo.jpg",
+  },
+  {
+    id: 6,
+    link:
+      "https://marketsquaregeelong.com.au/wp-content/uploads/2018/08/My-Size-400x400.jpg",
+  },
+];
 
 const MainPage = () => {
   return (
     <>
       <SearchBar />
       <DisplayCardContent>
-        {cardItem.map((val) => (
-          <Col xs={24} md={12} xl={8} key={val}>
-            <CardItem key={val} />
+        {cardItems.map((item) => (
+          <Col xs={24} md={12} xl={8} key={item.id}>
+            <CardItem key={item.id} link={item.link} />
           </Col>
         ))}
       </DisplayCardContent>

@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "antd";
 import {
   FacebookOutlined,
   MediumOutlined,
-  InstagramOutlined,
+  CopyOutlined,
 } from "@ant-design/icons";
 
 const IconTabs = styled.div`
@@ -18,7 +17,7 @@ const TabIcons = () => {
       <IconTabs>
         <MediumOutlined style={{ paddingRight: "10px" }} />
         <FacebookOutlined style={{ paddingRight: "10px" }} />
-        <InstagramOutlined style={{ paddingRight: "10px" }} />
+        <CopyOutlined style={{ paddingRight: "10px" }} />
       </IconTabs>
     </>
   );
