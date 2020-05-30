@@ -1,4 +1,4 @@
-# import PostOrderByInput from './generated/prisma.graphql'
+# import PostOrderByInput, PostUpdatelinksInput, PostUpdatetagsInput from './generated/prisma.graphql'
 
 type Query {
   posts(
@@ -18,24 +18,27 @@ type Mutation {
 
 input CreatePostInput {
   title: String!
-  descirption: String!
+  description: String!
   image: String!
-  link: String!
+  links: PostUpdatelinksInput!
+  tags: PostUpdatetagsInput!
 }
 
 input UpdatePostInput {
   title: String
-  descirption: String
+  description: String
   image: String
-  link: String
+  links: PostUpdatelinksInput
+  tags: PostUpdatetagsInput
 }
 
 type Post {
   id: ID!
   title: String!
-  descirption: String!
+  description: String!
+  tags: [String]!
   image: String!
-  link: String!
+  links: [String]!
   updatedAt: String
   createdAt: String
 }

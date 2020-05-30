@@ -28,6 +28,11 @@ services:
       POSTGRES_USER: root_user
       POSTGRES_PASSWORD: root_pass
       POSTGRES_DB: db_blog_app
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready --version"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - postgres_blog_app:/var/lib/postgresql/data
     ports:
@@ -51,6 +56,8 @@ services:
     restart: always
     ports:
       - "4466:4466"
+    depends_on:
+      - postgres
     environment:
       PRISMA_CONFIG: |
         port: 4466

@@ -14,7 +14,7 @@ const Query = {
             title_contains: args.query,
           },
           {
-            descirption_contains: args.query,
+            description_contains: args.query,
           },
         ],
       };

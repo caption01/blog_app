@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Sun May 24 2020 18:02:06 GMT+0700 (Indochina Time)
+# timestamp: Sat May 30 2020 19:31:56 GMT+0700 (Indochina Time)
 
 type AggregatePost {
   count: Int!
@@ -61,9 +61,10 @@ type PageInfo {
 type Post implements Node {
   id: ID!
   title: String!
-  descirption: String!
+  description: String!
+  tags: [String!]!
   image: String!
-  link: String!
+  links: [String!]!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -81,9 +82,18 @@ type PostConnection {
 input PostCreateInput {
   id: ID
   title: String!
-  descirption: String!
+  description: String!
   image: String!
-  link: String!
+  tags: PostCreatetagsInput
+  links: PostCreatelinksInput
+}
+
+input PostCreatelinksInput {
+  set: [String!]
+}
+
+input PostCreatetagsInput {
+  set: [String!]
 }
 
 """An edge in a connection."""
@@ -100,12 +110,10 @@ enum PostOrderByInput {
   id_DESC
   title_ASC
   title_DESC
-  descirption_ASC
-  descirption_DESC
+  description_ASC
+  description_DESC
   image_ASC
   image_DESC
-  link_ASC
-  link_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -115,9 +123,10 @@ enum PostOrderByInput {
 type PostPreviousValues {
   id: ID!
   title: String!
-  descirption: String!
+  description: String!
+  tags: [String!]!
   image: String!
-  link: String!
+  links: [String!]!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -161,16 +170,26 @@ input PostSubscriptionWhereInput {
 
 input PostUpdateInput {
   title: String
-  descirption: String
+  description: String
   image: String
-  link: String
+  tags: PostUpdatetagsInput
+  links: PostUpdatelinksInput
+}
+
+input PostUpdatelinksInput {
+  set: [String!]
 }
 
 input PostUpdateManyMutationInput {
   title: String
-  descirption: String
+  description: String
   image: String
-  link: String
+  tags: PostUpdatetagsInput
+  links: PostUpdatelinksInput
+}
+
+input PostUpdatetagsInput {
+  set: [String!]
 }
 
 input PostWhereInput {
@@ -262,46 +281,46 @@ input PostWhereInput {
 
   """All values not ending with the given string."""
   title_not_ends_with: String
-  descirption: String
+  description: String
 
   """All values that are not equal to given value."""
-  descirption_not: String
+  description_not: String
 
   """All values that are contained in given list."""
-  descirption_in: [String!]
+  description_in: [String!]
 
   """All values that are not contained in given list."""
-  descirption_not_in: [String!]
+  description_not_in: [String!]
 
   """All values less than the given value."""
-  descirption_lt: String
+  description_lt: String
 
   """All values less than or equal the given value."""
-  descirption_lte: String
+  description_lte: String
 
   """All values greater than the given value."""
-  descirption_gt: String
+  description_gt: String
 
   """All values greater than or equal the given value."""
-  descirption_gte: String
+  description_gte: String
 
   """All values containing the given string."""
-  descirption_contains: String
+  description_contains: String
 
   """All values not containing the given string."""
-  descirption_not_contains: String
+  description_not_contains: String
 
   """All values starting with the given string."""
-  descirption_starts_with: String
+  description_starts_with: String
 
   """All values not starting with the given string."""
-  descirption_not_starts_with: String
+  description_not_starts_with: String
 
   """All values ending with the given string."""
-  descirption_ends_with: String
+  description_ends_with: String
 
   """All values not ending with the given string."""
-  descirption_not_ends_with: String
+  description_not_ends_with: String
   image: String
 
   """All values that are not equal to given value."""
@@ -342,46 +361,6 @@ input PostWhereInput {
 
   """All values not ending with the given string."""
   image_not_ends_with: String
-  link: String
-
-  """All values that are not equal to given value."""
-  link_not: String
-
-  """All values that are contained in given list."""
-  link_in: [String!]
-
-  """All values that are not contained in given list."""
-  link_not_in: [String!]
-
-  """All values less than the given value."""
-  link_lt: String
-
-  """All values less than or equal the given value."""
-  link_lte: String
-
-  """All values greater than the given value."""
-  link_gt: String
-
-  """All values greater than or equal the given value."""
-  link_gte: String
-
-  """All values containing the given string."""
-  link_contains: String
-
-  """All values not containing the given string."""
-  link_not_contains: String
-
-  """All values starting with the given string."""
-  link_starts_with: String
-
-  """All values not starting with the given string."""
-  link_not_starts_with: String
-
-  """All values ending with the given string."""
-  link_ends_with: String
-
-  """All values not ending with the given string."""
-  link_not_ends_with: String
   createdAt: DateTime
 
   """All values that are not equal to given value."""
