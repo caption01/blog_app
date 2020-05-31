@@ -19,7 +19,7 @@ const MyApp = (props) => {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize());
   }, []);
 
   useEffect(() => {
