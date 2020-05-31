@@ -41,7 +41,7 @@ const SearchBar = () => {
         />
       </Item>
       <Item xs={24} md={6}>
-        <StyledSelector size="large" placeholder="Select tag">
+        <StyledSelector size="large" placeholder="tag">
           {options.map((ops) => (
             <Option key={ops.value} value={ops.value}>
               <StyledOption>{ops.text}</StyledOption>
