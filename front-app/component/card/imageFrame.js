@@ -9,7 +9,8 @@ const Frame = styled.div`
 
   img {
     width: 100%;
-    height: auto;
+    object-fit: cover;
+    height: 250px;
   }
 
   :hover .image {
@@ -19,6 +20,10 @@ const Frame = styled.div`
   :hover .hiddenText {
     opacity: 1;
   }
+`;
+
+const ImageDiv = styled.div`
+  width: 100%;
 `;
 
 const HiddenText = styled.div`
@@ -39,9 +44,9 @@ const HiddenText = styled.div`
 const ImageFrame = ({ image, description }) => {
   return (
     <Frame>
-      <div>
+      <ImageDiv image={image}>
         <img src={image} alt="Girl in a jacket" className="image" />
-      </div>
+      </ImageDiv>
       <HiddenText className="hiddenText">{description}</HiddenText>
     </Frame>
   );
