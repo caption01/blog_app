@@ -19,12 +19,13 @@ const MyApp = (props) => {
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize());
+    window.addEventListener("resize", handleResize);
+    handleResize();
   }, []);
 
   useEffect(() => {
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleResize());
     };
   }, []);
 
