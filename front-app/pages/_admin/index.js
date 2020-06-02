@@ -11,13 +11,8 @@ const StyledRow = styled(Row)`
   width: 100%;
 `;
 
-// const StyledCard = styled(Card)`
-//   width: 300px;
-// `;
-
 const EditPage = () => {
   return (
-    // <EditBG>
     <StyledRow>
       <Col xs={24} md={24}>
         <Card title="Add content" bordered={false} hoverable>
@@ -25,8 +20,6 @@ const EditPage = () => {
         </Card>
       </Col>
     </StyledRow>
-
-    // </EditBG>
   );
 };
 
