@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Row, Col, Spin, Empty } from "antd";
 import { gql } from "apollo-boost";
@@ -13,9 +13,9 @@ const DisplayCardContent = styled(Row)`
   overflow-y: scroll;
 `;
 
-const QUERY_POSTS = gql`
-  {
-    posts {
+const QUERY_POST_BY_SEARCH = gql`
+  query posts($query: String) {
+    posts(query: $query) {
       id
       title
       description
@@ -26,17 +26,7 @@ const QUERY_POSTS = gql`
   }
 `;
 
-const getPostCards = () => {
-  const { data, loading, error } = useQuery(QUERY_POSTS);
-
-  if (loading) {
-    return <Spin />;
-  }
-
-  if (error) {
-    return <Empty />;
-  }
-
+const getPostCards = ({ data }) => {
   const postCardLists = data?.posts || [];
 
   return postCardLists.map((post) => (
@@ -47,10 +37,24 @@ const getPostCards = () => {
 };
 
 const MainPage = () => {
+  const [search, setSearch] = useState("");
+
+  const { data, loading, error } = useQuery(QUERY_POST_BY_SEARCH, {
+    variables: { query: search },
+  });
+
+  if (loading) {
+    return <Spin />;
+  }
+
+  if (error) {
+    return <Empty />;
+  }
+
   return (
     <>
-      <SearchBar />
-      <DisplayCardContent>{getPostCards()}</DisplayCardContent>
+      <SearchBar onSearch={setSearch} />
+      <DisplayCardContent>{getPostCards({ data })}</DisplayCardContent>
     </>
   );
 };

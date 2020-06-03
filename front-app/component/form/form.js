@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
+const { Option } = Select;
+
 const ADD_CONTENT = gql`
   mutation createPost($data: CreatePostInput!) {
     createPost(data: $data) {
@@ -28,6 +30,8 @@ const StyledButton = styled(Button)`
   }
 `;
 
+const children = [];
+
 const FormEdit = () => {
   const [form] = Form.useForm();
   const [crateContent, { data }] = useMutation(ADD_CONTENT);
@@ -46,9 +50,8 @@ const FormEdit = () => {
   };
 
   const onFinish = (data) => {
-    console.log("sumbit");
     const dataTransform = transformData(data);
-    console.log(dataTransform);
+
     crateContent({ variables: { data: dataTransform } }).then((resp) => {
       router.push("/");
     });
@@ -87,7 +90,17 @@ const FormEdit = () => {
             style={{ width: "100%" }}
             placeholder="Tags Mode"
             onChange={(value) => handleChange(value, "tags")}
-          ></Select>
+          >
+            <Option key="js" value="javascript">
+              Javascript
+            </Option>
+            <Option key="graph-ql" value="graphql">
+              GraphQL
+            </Option>
+            <Option key="docker" value="docker">
+              Docker
+            </Option>
+          </Select>
         </Form.Item>
 
         <Form.Item label="Links" name="links">

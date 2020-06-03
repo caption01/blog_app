@@ -18,7 +18,7 @@ const CardItem = ({ post }) => {
       <StyledCardItem title={post.title} bordered={false} hoverable>
         <ImageFrame image={post.image} description={post.description} />
         <StyledDivider />
-        <TabIcons />
+        <TabIcons links={post.links} />
       </StyledCardItem>
     </div>
   );
