@@ -8,7 +8,12 @@ services:
       - /usr/app/node_modules
       - ./front-app:/usr/app
     ports:
-      - "4001:8081"
+      - "4001:3000"
+    env_file:
+      - ./front-app/.env.local
+    command: >
+      sh -c "npm run build &&
+             npm run start"
     restart: always
 
   server:
@@ -66,7 +71,7 @@ services:
         databases:
           default:
             connector: postgres
-            host: host.docker.internal
+            host: postgres
             database: db_blog_app
             user: root_user
             password: root_pass
