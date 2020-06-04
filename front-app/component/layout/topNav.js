@@ -32,7 +32,7 @@ const TopNav = () => {
         />
       </LogoFrame>
       <div>
-        <span> WEBSITE NAME </span>
+        <span> STICK STUFF </span>
       </div>
     </StyledTopNav>
   );

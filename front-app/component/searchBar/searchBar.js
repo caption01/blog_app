@@ -9,36 +9,17 @@ const StyledSearchBar = styled(Row)`
   width: 80%;
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
-
-const { Option } = Select;
 
 const Item = styled(Col)``;
 
-const StyledSelector = styled(Select)`
-  width: 50%;
-  float: right;
-  text-align: end;
-`;
-
-const StyledOption = styled.div`
-  text-align: end;
-`;
-
-const options = [
-  { text: "Javascript", value: "javascript" },
-  { text: "GraphQL", value: "graphql" },
-  { text: "Docker", value: "docker" },
-];
-
-const SearchBar = ({ onSearch }) => {
-  const onSelect = (value) => {
-    onSearch(value);
-  };
-
+const SearchBar = ({ onSearch, searchState }) => {
   const onSearching = debounce((value) => {
     onSearch(value);
   }, 500);
+
+  console.log({ searchState });
 
   return (
     <StyledSearchBar>
@@ -48,21 +29,9 @@ const SearchBar = ({ onSearch }) => {
           placeholder="What are you looking?"
           suffix={<SearchOutlined />}
           onChange={(e) => onSearching(e.target.value)}
-        />
-      </Item>
-      <Item xs={24} md={6}>
-        <StyledSelector
-          size="large"
-          placeholder="tag"
-          onChange={onSelect}
+          defaultValue={searchState}
           allowClear
-        >
-          {options.map((ops) => (
-            <Option key={ops.value} value={ops.value}>
-              <StyledOption>{ops.text}</StyledOption>
-            </Option>
-          ))}
-        </StyledSelector>
+        />
       </Item>
     </StyledSearchBar>
   );

@@ -53,7 +53,7 @@ const MainPage = () => {
 
   return (
     <>
-      <SearchBar onSearch={setSearch} />
+      <SearchBar onSearch={setSearch} searchState={search} />
       <DisplayCardContent>{getPostCards({ data })}</DisplayCardContent>
     </>
   );
