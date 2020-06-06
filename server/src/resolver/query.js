@@ -22,6 +22,17 @@ const Query = {
 
     return prisma.query.posts(opArgs, info);
   },
+  async post(parent, args, { prisma }, info) {
+    const opArgs = {};
+
+    opArgs.where = {
+      id: args.id,
+    };
+
+    const uniqPost = await prisma.query.post(opArgs, info);
+
+    return uniqPost;
+  },
 };
 
 export { Query as default };
