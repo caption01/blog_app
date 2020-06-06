@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Layout } from "antd";
+import { Layout, Button } from "antd";
+
+import { SearchOutlined } from "@ant-design/icons";
 
 const { Footer } = Layout;
 
@@ -11,6 +13,14 @@ const StyledFooter = styled(Footer)`
   height: 5vh;
 `;
 
-const FooterBar = () => <StyledFooter>Nutcha</StyledFooter>;
+const FooterBar = () => {
+  return (
+    <StyledFooter>
+      <div>
+        <Button type="primary" shape="circle" icon={<SearchOutlined />} />
+      </div>
+    </StyledFooter>
+  );
+};
 
 export default FooterBar;

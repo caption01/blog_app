@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Tooltip, Tag } from "antd";
 import { FacebookOutlined, MediumOutlined } from "@ant-design/icons";
 
 const IconTabs = styled.div`
@@ -14,16 +15,30 @@ const TabIcons = ({ links }) => {
   return (
     <>
       <IconTabs>
-        <MediumOutlined
-          style={{ paddingRight: "10px", color: isMedium ? "black" : "grey" }}
-        />
+        <Tooltip
+          title={isMedium ? "read on Medium" : "coming soon"}
+          key={isMedium}
+        >
+          <Tag icon={<MediumOutlined />} color={isMedium ? "black" : "grey"}>
+            <a target="_blank" href={isMedium}>
+              Medium
+            </a>
+          </Tag>
+        </Tooltip>
 
-        <FacebookOutlined
-          style={{
-            paddingRight: "10px",
-            color: isFacebook ? "#3b5998" : "grey",
-          }}
-        />
+        <Tooltip
+          title={isFacebook ? "read on Facebook" : "coming soon"}
+          key={isFacebook}
+        >
+          <Tag
+            icon={<FacebookOutlined />}
+            color={isFacebook ? "#3b5998" : "grey"}
+          >
+            <a target="_blank" href={isFacebook}>
+              Facebook
+            </a>
+          </Tag>
+        </Tooltip>
       </IconTabs>
     </>
   );

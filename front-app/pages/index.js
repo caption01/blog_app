@@ -14,7 +14,7 @@ const DisplayCardContent = styled(Row)`
 `;
 
 const QUERY_POST_BY_SEARCH = gql`
-  query posts($query: String) {
+  query queryPosts($query: String) {
     posts(query: $query) {
       id
       title
