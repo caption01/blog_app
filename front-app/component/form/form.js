@@ -8,19 +8,11 @@ import gql from "graphql-tag";
 
 const { Option } = Select;
 
-const ADD_CONTENT = gql`
-  mutation createPost($data: CreatePostInput!) {
-    createPost(data: $data) {
-      id
-      title
-    }
-  }
-`;
-
 const StyledButton = styled(Button)`
   background-color: ${(props) => props?.theme?.colors?.bg_primary};
   border-color: unset;
   color: ${(props) => props?.theme?.colors?.text_primary};
+  margin-right: 20px;
 
   :hover {
     background-color: ${(props) => props?.theme?.colors?.bg_primary};
@@ -30,12 +22,45 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const children = [];
+const layoutStyled = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 },
+};
 
-const FormEdit = () => {
-  const [form] = Form.useForm();
-  const [crateContent, { data }] = useMutation(ADD_CONTENT);
+const ADD_CONTENT = gql`
+  mutation createPost($data: CreatePostInput!) {
+    createPost(data: $data) {
+      id
+      title
+    }
+  }
+`;
+
+const UPDATE_CONTENT = gql`
+  mutation updatePost($id: String!, $data: UpdatePostInput!) {
+    updatePost(id: $id, data: $data) {
+      id
+      title
+    }
+  }
+`;
+
+const DELETE_CONTENT = gql`
+  mutation deletePost($id: String!) {
+    deletePost(id: $id) {
+      id
+      title
+    }
+  }
+`;
+
+const FormEdit = ({ post }) => {
   const router = useRouter();
+  const [form] = Form.useForm();
+
+  const [crateContent, { newData }] = useMutation(ADD_CONTENT);
+  const [updateContent, { updatedData }] = useMutation(UPDATE_CONTENT);
+  const [deleteContent, { deletedData }] = useMutation(DELETE_CONTENT);
 
   const transformData = (data) => {
     return {
@@ -52,6 +77,15 @@ const FormEdit = () => {
   const onFinish = (data) => {
     const dataTransform = transformData(data);
 
+    if (post?.id) {
+      updateContent({
+        variables: { id: post?.id, data: dataTransform },
+      }).then((resp) => {
+        router.push("/");
+      });
+      return;
+    }
+
     crateContent({ variables: { data: dataTransform } }).then((resp) => {
       router.push("/");
     });
@@ -61,10 +95,21 @@ const FormEdit = () => {
     form.setFieldsValue({ key: value });
   };
 
-  const layoutStyled = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
+  const handleDelete = (postId) => {
+    deleteContent({
+      variables: { id: postId },
+    }).then((resp) => {
+      router.push("/");
+    });
   };
+
+  if (post) {
+    form.setFieldsValue({ ["title"]: post?.title });
+    form.setFieldsValue({ ["description"]: post?.description });
+    form.setFieldsValue({ ["image"]: post?.image });
+    form.setFieldsValue({ ["tags"]: post?.tags });
+    form.setFieldsValue({ ["links"]: post?.links });
+  }
 
   return (
     <div>
@@ -78,12 +123,15 @@ const FormEdit = () => {
         <Form.Item label="Title" name="title">
           <Input placeholder="input placeholder" />
         </Form.Item>
+
         <Form.Item label="Description" name="description">
           <Input placeholder="input placeholder" />
         </Form.Item>
+
         <Form.Item label="Image" name="image">
           <Input placeholder="input placeholder" />
         </Form.Item>
+
         <Form.Item label="Tags" name="tags">
           <Select
             mode="tags"
@@ -114,6 +162,10 @@ const FormEdit = () => {
 
         <Form.Item wrapperCol={{ ...layoutStyled.wrapperCol, offset: 8 }}>
           <StyledButton htmlType="submit"> Submit </StyledButton>
+          <StyledButton onClick={() => handleDelete(post?.id)}>
+            {" "}
+            Delete{" "}
+          </StyledButton>
         </Form.Item>
       </Form>
     </div>
