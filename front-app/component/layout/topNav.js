@@ -27,7 +27,7 @@ const LogoFrame = styled.div`
   margin-right: 24px;
 
   img {
-    width: ${(props) => (props.theme.isMobile ? "50px" : "100px")};
+    width: ${(props) => (props.theme.isMobile ? "50px" : "80px")};
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
   }
 `;
