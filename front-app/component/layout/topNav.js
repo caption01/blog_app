@@ -7,7 +7,7 @@ import {
   LinkedinOutlined,
 } from "@ant-design/icons";
 
-const { Header, Content, Footer } = Layout;
+const { Header } = Layout;
 
 const StyledTopNav = styled(Header)`
   background-color: ${(props) => props.theme.colors.bg_primary};
@@ -22,19 +22,21 @@ const StyledTopNav = styled(Header)`
 
 const LogoFrame = styled.div`
   position: absolute;
-  left: 100px;
+  left: ${(props) => (props.theme.isMobile ? "0px" : "100px")};
   width: 80px;
   margin-right: 24px;
 
   img {
-    width: 100%;
+    width: ${(props) => (props.theme.isMobile ? "50px" : "100px")};
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
   }
 `;
 
 const SocialContact = styled.div`
   position: absolute;
-  right: 20px;
+  right: ${(props) => (props.theme.isMobile ? "0px" : "20px")};
   display: flex;
+  flex-direction: ${(props) => (props.theme.isMobile ? "column" : "row")};
   align-items: center;
 `;
 
@@ -45,8 +47,8 @@ const IconDiv = styled.div`
 
   a {
     color: inherit;
-    line-height: 40px;
-    font-size: 40px;
+    line-height: ${(props) => (props.theme.isMobile ? "20px" : "40px")};
+    font-size: ${(props) => (props.theme.isMobile ? "20px" : "40px")};
   }
 
   :hover {
@@ -58,7 +60,7 @@ const IconDiv = styled.div`
 `;
 
 const WebSiteName = styled.span`
-  font-size: 40px;
+  font-size: ${(props) => (props.theme.isMobile ? "20px" : "40px")};
 
   -webkit-animation: text-shadow-pop-br 0.6s both;
   animation: text-shadow-pop-br 0.6s both;
@@ -99,10 +101,7 @@ const TopNav = () => {
   return (
     <StyledTopNav>
       <LogoFrame>
-        <img
-          src="https://images-platform.99static.com//fg0J0q4EZcumZ5FuwMY1z9ZZfLw=/431x0:1552x1116/fit-in/500x500/99designs-contests-attachments/114/114898/attachment_114898323"
-          alt="Girl in a jacket"
-        />
+        <img src={"./static/logo_stuff.png"} alt="logo" />
       </LogoFrame>
       <div>
         <WebSiteName className="text-pop-up-top"> STICK STUFF </WebSiteName>
