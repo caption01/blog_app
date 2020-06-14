@@ -11,7 +11,7 @@ import "../style/app.less";
 
 const MyApp = (props) => {
   const { Component, PageProps, apollo } = props;
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(null);
 
   const handleResize = () => {
     const isMoblie = window.innerWidth <= 768;
@@ -25,7 +25,8 @@ const MyApp = (props) => {
 
   useEffect(() => {
     return () => {
-      window.removeEventListener("resize", handleResize());
+      handleResize();
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

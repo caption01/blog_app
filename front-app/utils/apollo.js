@@ -4,7 +4,7 @@ import withApollo from "next-with-apollo";
 import { createHttpLink } from "apollo-link-http";
 import fetch from "isomorphic-unfetch";
 
-// const GRAPHQL_URL = "http://localhost:4010";
+import { PostMutation } from "./mutation/index";
 
 const API_GRAPHQL = process.env.NEXT_PUBLIC_API_GRAPHQL;
 
@@ -13,10 +13,25 @@ const link = createHttpLink({
   uri: API_GRAPHQL,
 });
 
+const cache = new InMemoryCache();
+
+const resolvers = {
+  Mutation: {
+    ...PostMutation,
+  },
+};
+
+const initialData = {
+  search: "",
+};
+
+cache.writeData({ data: initialData });
+
 export default withApollo(
   ({ initialState }) =>
     new ApolloClient({
       link,
-      cache: new InMemoryCache().restore(initialState || {}),
+      cache: cache,
+      resolvers: resolvers,
     })
 );

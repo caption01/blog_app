@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { debounce } from "lodash";
 
 const StyledSearchBar = styled(Row)`
-  width: ${(props) => (props?.theme?.isMobile ? "250px" : "60%")};
+  width: ${(props) => (props?.theme?.isMobile ? "200px" : "300px")};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,14 +16,14 @@ const Item = styled(Col)``;
 const SearchBar = ({ onSearch, searchState }) => {
   const onSearching = debounce((value) => {
     onSearch(value);
-  }, 500);
+  }, 1000);
 
   return (
     <StyledSearchBar>
-      <Item xs={24} md={18}>
+      <Item xs={24} md={24}>
         <Input
           size="large"
-          placeholder="What are you looking?"
+          placeholder="searching"
           suffix={<SearchOutlined />}
           onChange={(e) => onSearching(e.target.value)}
           defaultValue={searchState}

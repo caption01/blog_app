@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Layout, Button } from "antd";
-
-import { SearchOutlined } from "@ant-design/icons";
+import { Layout } from "antd";
 
 const { Footer } = Layout;
 
@@ -11,16 +9,13 @@ const StyledFooter = styled(Footer)`
   color: ${(props) => props.theme.colors.text_primary};
   text-align: center;
   height: 5vh;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
 `;
 
 const FooterBar = () => {
-  return (
-    <StyledFooter>
-      <div>
-        <Button type="primary" shape="circle" icon={<SearchOutlined />} />
-      </div>
-    </StyledFooter>
-  );
+  return <StyledFooter></StyledFooter>;
 };
 
 export default FooterBar;

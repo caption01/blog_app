@@ -8,7 +8,7 @@ import FooterBar from "./footer";
 const { Content } = Layout;
 
 const StyledBody = styled(Content)`
-  height: 90vh;
+  min-height: 90vh;
   background-color: ${(props) => props.theme.colors.bg_second};
   color: ${(props) => props.theme.colors.text_second};
   padding: ${(props) => (props.theme.isMobile ? "0" : "0px 50px")};
@@ -30,7 +30,7 @@ const PageLayout = ({ children }) => {
           {children}
         </StyledContent>
       </StyledBody>
-      {/* <FooterBar /> */}
+      <FooterBar />
     </Layout>
   );
 };
