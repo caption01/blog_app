@@ -37,13 +37,14 @@ const getPostCards = (posts) => {
 };
 
 const MainPage = () => {
-  // const [search, setSearch] = useState("");
   const {
     data: { search },
   } = useQuery(GET_SEARCH);
 
+  const lowerCaseSearchingText = search.toLocaleLowerCase();
+
   const { data, loading, error } = useQuery(QUERY_POST_BY_SEARCH, {
-    variables: { query: search },
+    variables: { query: lowerCaseSearchingText },
   });
 
   if (!data) {
