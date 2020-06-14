@@ -39,6 +39,7 @@ const HiddenText = styled.div`
   height: 150px;
   color: ${(props) => props.theme.colors.text_second};
   padding: 20px 20px;
+  font-size: 16px;
 `;
 
 const ImageFrame = ({ image, description }) => {
